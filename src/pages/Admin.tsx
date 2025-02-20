@@ -13,9 +13,10 @@ interface UserDetailsModalProps {
   user: UserWithPlants;
   onClose: () => void;
   onEdit: (user: UserWithPlants) => void;
+  onDelete: (userId: string) => void;
 }
 
-const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ user, onClose, onEdit }) => (
+const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ user, onClose, onEdit, onDelete }) => (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div className="bg-white rounded-lg max-w-2xl w-full mx-4 relative">
       <button
@@ -32,12 +33,20 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ user, onClose, onEd
             <p className="text-gray-600">{user.email}</p>
             <p className="text-sm text-gray-500">Country: {user.country}</p>
           </div>
-          <button
-            onClick={() => onEdit(user)}
-            className="text-blue-600 hover:text-blue-700"
-          >
-            <Pencil className="h-5 w-5" />
-          </button>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => onEdit(user)}
+              className="text-blue-600 hover:text-blue-700"
+            >
+              <Pencil className="h-5 w-5" />
+            </button>
+            <button
+              onClick={() => onDelete(user.id)}
+              className="text-red-600 hover:text-red-700"
+            >
+              <Trash2 className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         <div className="space-y-4">
@@ -492,6 +501,7 @@ const Admin = () => {
             setEditingUser(user);
             setSelectedUser(null);
           }}
+          onDelete={handleDeleteUser}
         />
       )}
 

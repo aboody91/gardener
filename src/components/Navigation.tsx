@@ -20,7 +20,7 @@ const Navigation = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <Plant className="h-8 w-8" />
-              <span className="font-bold text-xl">Garden Planner</span>
+              <span className="font-bold text-xl">Plants Care</span>
             </Link>
           </div>
 
